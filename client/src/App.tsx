@@ -1,11 +1,12 @@
-import './App.css';
-import Navbar from './layouts/Navbar';
+import Navbar from './layouts/common/Navbar';
+import ExploreTopBooks from './layouts/home/ExploreTopBooks';
 
 function App() {
 
   return (
     <>
       <Navbar />
+      <ExploreTopBooks />
     </>
   )
 }
