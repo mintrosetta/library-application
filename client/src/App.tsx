@@ -2,6 +2,7 @@ import Navbar from './layouts/common/Navbar';
 import Carousel from './layouts/home/Carousel';
 import ExploreTopBooks from './layouts/home/ExploreTopBooks';
 import Heros from './layouts/home/Heros';
+import LibraryService from './layouts/home/LibraryService';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <ExploreTopBooks />
       <Carousel />
       <Heros />
+      <LibraryService />
     </>
   )
 }
