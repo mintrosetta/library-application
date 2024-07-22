@@ -1,6 +1,6 @@
-import img1 from '../../Images/BooksImages/book-luv2code-1000.png';
 import img2 from '../../Images/BooksImages/new-book-1.png';
-import img3 from '../../Images/BooksImages/new-book-2.png';
+import ReturnBook from './ReturnBook';
+
 export default function Carousel() {
     return (
         <>
@@ -13,35 +13,23 @@ export default function Carousel() {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <div className="row d-flex justify-content-center align-items-center">
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
-                                    <div className="text-center">
-                                        <img src={img1} width="151" height="233" alt="" />
-                                        <h6 className="mt-2">Book</h6>
-                                        <a className="btn main-color text-white" href="#">Reserve</a>
-                                    </div>
-                                </div>
+                                <ReturnBook />
+                                <ReturnBook />
+                                <ReturnBook />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="row d-flex justify-content-center align-items-center">
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
-                                    <div className="text-center">
-                                        <img src={img1} width="151" height="233" alt="" />
-                                        <h6 className="mt-2">Book</h6>
-                                        <a className="btn main-color text-white" href="#">Reserve</a>
-                                    </div>
-                                </div>
+                                <ReturnBook />
+                                <ReturnBook />
+                                <ReturnBook />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="row d-flex justify-content-center align-items-center">
-                                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
-                                    <div className="text-center">
-                                        <img src={img1} width="151" height="233" alt="" />
-                                        <h6 className="mt-2">Book</h6>
-                                        <a className="btn main-color text-white" href="#">Reserve</a>
-                                    </div>
-                                </div>
+                                <ReturnBook />
+                                <ReturnBook />
+                                <ReturnBook />
                             </div>
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
