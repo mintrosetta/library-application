@@ -1,22 +1,14 @@
 import Footer from './layouts/common/Footer';
 import Navbar from './layouts/common/Navbar';
-import Carousel from './layouts/home/Carousel';
-import ExploreTopBooks from './layouts/home/ExploreTopBooks';
-import Heros from './layouts/home/Heros';
-import LibraryService from './layouts/home/LibraryService';
+import HomePage from './layouts/home/HomePage';
 
-function App() {
+export default function App() {
 
   return (
     <>
       <Navbar />
-      <ExploreTopBooks />
-      <Carousel />
-      <Heros />
-      <LibraryService />
+      <HomePage />
       <Footer />
     </>
   )
 }
-
-export default App

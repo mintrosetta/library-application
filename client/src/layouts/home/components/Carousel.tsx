@@ -1,4 +1,4 @@
-import img2 from '../../Images/BooksImages/new-book-1.png';
+import img2 from '../../../Images/BooksImages/book-luv2code-1000.png';
 import ReturnBook from './ReturnBook';
 
 export default function Carousel() {
