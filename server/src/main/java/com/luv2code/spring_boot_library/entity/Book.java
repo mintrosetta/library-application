@@ -30,7 +30,7 @@ public class Book {
     @Column(name = "copies")
     private Integer copies;
 
-    @Column(name = "copies_avaliable")
+    @Column(name = "copies_available")
     private Integer copiesAvaliable;
 
     @Column(name = "img")
