@@ -1,7 +1,25 @@
+import { useEffect, useState } from 'react';
 import img2 from '../../../Images/BooksImages/book-luv2code-1000.png';
 import ReturnBook from './ReturnBook';
 
+import BookModel from '../../../models/BookModel';
+
 export default function Carousel() {
+    const [books, setBooks] = useState<BookModel[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [httpError, setHttpError] = useState(null);
+
+    useEffect(() => {
+        async function fetchBooks() {
+
+        }
+
+        fetchBooks().then().catch((err: any) => {
+            setIsLoading(false);
+            setHttpError(err.message);
+        })
+    }, []);
+    
     return (
         <>
             <div className="container mt-5" style={{ height: "550px" }}>
