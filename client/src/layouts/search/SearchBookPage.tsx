@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
 import SpinerLoading from "../utils/SpinnerLoading";
 import SearchBook from "./components/SearchBook";
+import Pagination from "../utils/Pagination";
 
 const SearchBookPage = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [bookPerPage, setBookPerPage] = useState(5);
+    const [totalBooks, setTotalBooks] = useState(0);
+    const [totalPages, setTotalPage] = useState(0);
 
     useEffect(() => {
         setIsLoading(true);
@@ -17,7 +22,7 @@ const SearchBookPage = () => {
 
     const fetchSearch = async () => {
         const baseUrl: string = "http://localhost:8080/api/books";
-        const url: string = `${baseUrl}?page=0&size=5`;
+        const url: string = `${baseUrl}?page=${currentPage + 1}&size=${bookPerPage}`;
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Some thing went wrong");
@@ -37,6 +42,9 @@ const SearchBookPage = () => {
             });
         }
 
+        setTotalBooks(responseJson.page.totalElement);
+        setTotalPage(responseJson.page.totalPages);
+
         setBooks(loadedBooks);
     }
 
@@ -47,6 +55,12 @@ const SearchBookPage = () => {
     );
 
     if (isLoading) return <SpinerLoading />
+
+    const indexOfLastBook: number = currentPage * bookPerPage;
+    const indexOfFirstBook: number = indexOfLastBook - bookPerPage;
+    let lastItem = bookPerPage * currentPage <= totalBooks ? bookPerPage * currentPage : totalBooks;
+
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -101,6 +115,9 @@ const SearchBookPage = () => {
                             {books.map(book => (
                                 <SearchBook book={book} key={book.id} />
                             ))}
+                            {totalPages > 1 && (
+                                <Pagination currentPage={currentPage} totalPage={totalPages} paginate={paginate}/>
+                            )}
                         </div>
                     </div>
                 </div>
