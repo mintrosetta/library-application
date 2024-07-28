@@ -5,7 +5,6 @@ import SearchBook from "./components/SearchBook";
 
 const SearchBookPage = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
-    const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState(null);
 
