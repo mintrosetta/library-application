@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ReturnBook from './ReturnBook';
 
 import BookModel from '../../../models/BookModel';
+import SpinerLoading from '../../utils/SpinnerLoading';
 
 export default function Carousel() {
     const [books, setBooks] = useState<BookModel[]>([]);
@@ -49,9 +50,7 @@ export default function Carousel() {
 
     if (isLoading) {
         return (
-            <div className='container m-5'>
-                <p>Loading...</p>
-            </div>
+            <SpinerLoading />
         )
     }
 
@@ -107,7 +106,7 @@ export default function Carousel() {
                     <div className="d-lg-none mt-3">
                         <div className='row d-flex justify-content-center align-content-center'>
                         <div className="text-center">
-                           <ReturnBook book={books[0]} />
+                           {books.length > 0 && <ReturnBook book={books[0]} />}
                         </div>
                         </div>
                     </div>
