@@ -10,7 +10,7 @@ import com.luv2code.spring_boot_library.entity.Book;
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
-    private String allowedOrigin = "http://localhost:3000"; // client port
+    private String allowedOrigin = "http://localhost:5173"; // client port
 
     // CorsRegistry -> คลาสที่ใช้จัดการกับการตั้งค่า CORS
     @Override
