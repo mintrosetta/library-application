@@ -15,14 +15,16 @@ const SearchBookPage = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetchSearch().catch((err) => setHttpError(err.message)).finally(() => {
+        fetchSearch().then(() => {
+            window.scrollTo(0, 0);
+        }).catch((err) => setHttpError(err.message)).finally(() => {
             setIsLoading(false);
         });
-    }, []);
+    }, [currentPage]);
 
     const fetchSearch = async () => {
         const baseUrl: string = "http://localhost:8080/api/books";
-        const url: string = `${baseUrl}?page=${currentPage + 1}&size=${bookPerPage}`;
+        const url: string = `${baseUrl}?page=${currentPage - 1}&size=${bookPerPage}`;
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Some thing went wrong");
@@ -42,10 +44,12 @@ const SearchBookPage = () => {
             });
         }
 
-        setTotalBooks(responseJson.page.totalElement);
-        setTotalPage(responseJson.page.totalPages);
-
         setBooks(loadedBooks);
+
+        console.log(responseJson)
+
+        setTotalBooks(responseJson.page.totalElements);
+        setTotalPage(responseJson.page.totalPages);
     }
 
     if (httpError) return (
@@ -107,10 +111,10 @@ const SearchBookPage = () => {
                                 </div>
                             </div>
                             <div className="mt-3">
-                                <h5>Number of results: (22)</h5>
+                                <h5>Number of results: ({totalBooks})</h5>
                             </div>
                             <p>
-                                1 to 5 of 22 items
+                                {indexOfFirstBook + 1} to {lastItem} of {totalBooks} items
                             </p>
                             {books.map(book => (
                                 <SearchBook book={book} key={book.id} />
