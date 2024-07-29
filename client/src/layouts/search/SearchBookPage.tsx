@@ -12,6 +12,9 @@ const SearchBookPage = () => {
     const [bookPerPage, setBookPerPage] = useState(5);
     const [totalBooks, setTotalBooks] = useState(0);
     const [totalPages, setTotalPage] = useState(0);
+    const [search, setSearch] = useState("");
+    const [searchUrl, setSearchUrl] = useState("");
+
 
     useEffect(() => {
         setIsLoading(true);
