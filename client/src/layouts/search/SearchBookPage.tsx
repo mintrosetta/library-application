@@ -63,7 +63,7 @@ const SearchBookPage = () => {
 
     if (httpError) return (
         <>
-            <p>{httpError}</p>  
+            <p>{httpError}</p>
         </>
     );
 
@@ -91,7 +91,7 @@ const SearchBookPage = () => {
                         <div className="row mt-5">
                             <div className="col-6">
                                 <div className="d-flex">
-                                    <input type="search" className="form-control me-2" placeholder="search" area-labelledby="Search" value={search} onChange={e => setSearch(e.target.value)}/>
+                                    <input type="search" className="form-control me-2" placeholder="search" area-labelledby="Search" value={search} onChange={e => setSearch(e.target.value)} />
                                     <button className="btn btn-outline-success" onClick={searchHandle}>
                                         Search
                                     </button>
@@ -99,14 +99,14 @@ const SearchBookPage = () => {
                             </div>
                             <div className="col-4">
                                 <div className="dropdown">
-                                    <button 
-                                        className="btn btn-secondary dropdown-toggle" 
-                                        type="button" 
-                                        id="dropdownMenuButton1" 
-                                        data-bs-toggle="dropdown" 
+                                    <button
+                                        className="btn btn-secondary dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
                                         aria-expanded="false"
                                     >
-                                        Category 
+                                        Category
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li>
@@ -127,17 +127,27 @@ const SearchBookPage = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="mt-3">
-                                <h5>Number of results: ({totalBooks})</h5>
-                            </div>
-                            <p>
-                                {indexOfFirstBook + 1} to {lastItem} of {totalBooks} items
-                            </p>
+                            {totalBooks > 0 ? (
+                                <>
+                                    <div className="mt-3">
+                                        <h5>Number of results: ({totalBooks})</h5>
+                                    </div>
+                                    <p>
+                                        {indexOfFirstBook + 1} to {lastItem} of {totalBooks} items
+                                    </p>
+                                </>
+                            ) : (
+                                <div className="m-5">
+                                    <h3>Can't find what you are looking for ?</h3>
+                                    <a href="#" type="button" className="btn main-color btn-md px-4 me-md-2 fw-bold text-white">Library Services</a>
+                                </div>
+                            )}
+
                             {books.map(book => (
                                 <SearchBook book={book} key={book.id} />
                             ))}
                             {totalPages > 1 && (
-                                <Pagination currentPage={currentPage} totalPage={totalPages} paginate={paginate}/>
+                                <Pagination currentPage={currentPage} totalPage={totalPages} paginate={paginate} />
                             )}
                         </div>
                     </div>
