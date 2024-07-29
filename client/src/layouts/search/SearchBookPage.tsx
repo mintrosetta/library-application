@@ -23,11 +23,17 @@ const SearchBookPage = () => {
         }).catch((err) => setHttpError(err.message)).finally(() => {
             setIsLoading(false);
         });
-    }, [currentPage]);
+    }, [currentPage, searchUrl]);
 
     const fetchSearch = async () => {
         const baseUrl: string = "http://localhost:8080/api/books";
-        const url: string = `${baseUrl}?page=${currentPage - 1}&size=${bookPerPage}`;
+        let url: string = `${baseUrl}?page=${currentPage - 1}&size=${bookPerPage}`;
+
+        if (searchUrl === '') {
+            url = `${baseUrl}?page=${currentPage - 1}&size=${bookPerPage}`;
+        } else {
+            url = `${baseUrl}${searchUrl}`;
+        }
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Some thing went wrong");
@@ -63,6 +69,14 @@ const SearchBookPage = () => {
 
     if (isLoading) return <SpinerLoading />
 
+    const searchHandle = () => {
+        if (search === '') {
+            setSearchUrl('');
+        } else {
+            setSearchUrl(`/search/findByTitleContaining?title=${search}&page=0&size=${bookPerPage}`);
+        }
+    }
+
     const indexOfLastBook: number = currentPage * bookPerPage;
     const indexOfFirstBook: number = indexOfLastBook - bookPerPage;
     let lastItem = bookPerPage * currentPage <= totalBooks ? bookPerPage * currentPage : totalBooks;
@@ -77,8 +91,8 @@ const SearchBookPage = () => {
                         <div className="row mt-5">
                             <div className="col-6">
                                 <div className="d-flex">
-                                    <input type="search" className="form-control me-2" placeholder="search" area-labelledby="Search" />
-                                    <button className="btn btn-outline-success">
+                                    <input type="search" className="form-control me-2" placeholder="search" area-labelledby="Search" value={search} onChange={e => setSearch(e.target.value)}/>
+                                    <button className="btn btn-outline-success" onClick={searchHandle}>
                                         Search
                                     </button>
                                 </div>
